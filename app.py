@@ -31,6 +31,23 @@ for key, default in {
         st.session_state[key] = default
 
 st.title("📚 Pénzügyi Vizsgafelkészítő")
+st.markdown("### 📊 Gyakorlási statisztika")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("✅ Jó", st.session_state.score)
+
+with col2:
+    st.metric("❌ Rossz", st.session_state.wrong)
+
+with col3:
+    total = st.session_state.score + st.session_state.wrong
+    if total > 0:
+        percent = st.session_state.score / total * 100
+        st.metric("🎯 Találati arány", f"{percent:.1f}%")
+    else:
+        st.metric("🎯 Találati arány", "0%")
 
 mode = st.sidebar.radio("Mód", ["Gyakorlás","Vizsga"])
 
@@ -59,6 +76,9 @@ if mode == "Vizsga" and st.session_state.exam_start:
 q = st.session_state.current
 
 if q is not None:
+    st.info(
+        f"Kérdés: {len(st.session_state.answered)+1} / {QUESTIONS_PER_EXAM}"
+    )
     st.subheader(q["Kerdes"])
 
     ans = st.radio(
