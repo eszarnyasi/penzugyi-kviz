@@ -77,7 +77,7 @@ q = st.session_state.current
 
 if q is not None:
     st.info(
-        f"Kérdés: {len(st.session_state.answered)+1} / {QUESTIONS_PER_EXAM}"
+        f"Kérdés: {len(st.session_state.answered)+1} / 20"
     )
     st.subheader(q["Kerdes"])
 
