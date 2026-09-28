@@ -74,24 +74,24 @@ if q is not None:
     if st.button("Beküldés"):
         correct = str(q["Helyes_Valasz"]).strip()
 
-    if ans == correct:
-        st.session_state.score += 1
-        st.success("✅ Helyes")
-        time.sleep(3)
+        if ans == correct:
+            st.session_state.score += 1
+            st.success("✅ Helyes")
+            time.sleep(3)
 
-    else:
-        st.session_state.wrong += 1
+        else:
+            st.session_state.wrong += 1
 
-        st.error(f"❌ Helytelen. Helyes válasz: {correct}")
+            st.error(f"❌ Helytelen. Helyes válasz: {correct}")
 
-        st.session_state.wrong_questions.append({
-            "ID": q["ID"],
-            "Kérdés": q["Kerdes"],
-            "Te válaszod": ans,
-            "Helyes": correct
-        })
+            st.session_state.wrong_questions.append({
+                "ID": q["ID"],
+                "Kérdés": q["Kerdes"],
+                "Te válaszod": ans,
+                "Helyes": correct
+            })
 
-        time.sleep(8)
+            time.sleep(8)
 
         st.session_state.answered.append(q["ID"])
 
