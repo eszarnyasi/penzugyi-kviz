@@ -7,6 +7,7 @@
 import streamlit as st
 import pandas as pd
 import random
+import time 
 from datetime import datetime, timedelta
 
 CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTHQjC2gTbNQYZizic2IV0IgA8C1Q-SRMZlJqEJa-L9A5VPk888a3Zpgzsoz8IXXnO-3j0b5c4DP2kv/pub?gid=0&single=true&output=csv"
@@ -87,6 +88,13 @@ if q is not None:
             })
 
         st.session_state.answered.append(q["ID"])
+        if ans == correct:
+    st.success("✅ Helyes")
+    time.sleep(3)
+else:
+    st.error(f"❌ Helytelen. Helyes válasz: {correct}")
+    time.sleep(8)
+
         st.session_state.current = next_question()
         st.rerun()
 
